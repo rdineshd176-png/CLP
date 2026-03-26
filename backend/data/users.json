@@ -1,0 +1,50 @@
+{
+  "test": {
+    "id": 1,
+    "username": "test",
+    "email": "test@clp.demo",
+    "name": "Test User",
+    "hashed_password": "$2b$12$njumVrU1db7mcZiajG1Hnegf5VfM3O3SixImvXUG9tzQLL3188H8O",
+    "streak": 14,
+    "readiness": 42,
+    "ats_score": 40,
+    "mock_scores": [
+      72,
+      78,
+      81
+    ],
+    "solved_problems": [
+      1,
+      4,
+      6,
+      12,
+      15,
+      8,
+      9,
+      10,
+      7,
+      5,
+      3,
+      2
+    ],
+    "last_active": "2026-03-26T19:00:00.224339"
+  },
+  "test1": {
+    "id": 2,
+    "username": "test1",
+    "email": "",
+    "name": "dinesh",
+    "hashed_password": "$2b$12$Ibb2TZvxIcnmsIL7.R9TgOSvlEupHmxrHwuAU5qcKJNoM6ZkAkd7.",
+    "streak": 4,
+    "readiness": 25,
+    "ats_score": 0,
+    "mock_scores": [],
+    "solved_problems": [
+      3,
+      2,
+      1,
+      4
+    ],
+    "last_active": "2026-03-26T19:36:12.494520"
+  }
+}

@@ -1,0 +1,88 @@
+===========================================
+SAMPLE RESUME TEXT (for ATS Testing)
+===========================================
+
+R. Dinesh
+Email: dinesh@example.com | Phone: +91 9876543210
+GitHub: github.com/dinesh | LinkedIn: linkedin.com/in/dinesh
+
+EDUCATION
+B.Tech in Computer Science and Engineering (Cyber Security)
+Mahendra Engineering College, Tamil Nadu
+CGPA: 8.7 | Expected Graduation: 2026
+
+TECHNICAL SKILLS
+Programming Languages: Python, Java, C++, JavaScript
+Web Technologies: React, Node.js, Express, HTML/CSS
+Databases: MongoDB, MySQL
+Tools: Git, Docker, Postman
+
+EXPERIENCE
+Cyber Security Intern | TechSecure Pvt Ltd | May 2025 – July 2025
+• Conducted vulnerability assessments for 10+ web applications using OWASP tools.
+• Developed an automated script to detect SQL injection flaws, reducing manual testing time by 40%.
+• Presented security findings to the development team and assisted in remediation.
+
+PROJECTS
+1. AI‑Powered Placement Tracker (Career Launch Pad)
+   • Built a full‑stack web application with FastAPI backend and AI (Ollama) integration.
+   • Implemented JWT authentication, real‑time leaderboards, and eye‑tracking interview simulation.
+   • Technologies: Python, JavaScript, MediaPipe, HTML/CSS.
+
+2. Secure File Encryption Tool
+   • Developed a desktop application using Python and cryptography library.
+   • Implemented AES‑256 encryption with key derivation (PBKDF2).
+
+CERTIFICATIONS
+• Certified Ethical Hacker (CEH) v12 – EC‑Council
+• Google IT Automation with Python – Coursera
+
+ACHIEVEMENTS
+• Winner of Intra‑College Hackathon 2025
+• Solved 250+ problems on LeetCode (Rating: 1650)
+
+===========================================
+SAMPLE APTITUDE QUESTIONS (for Mock Test)
+===========================================
+
+1. A train 150 m long passes a pole in 6 seconds. What is its speed in km/h?
+   Options: A) 80 km/h  B) 85 km/h  C) 90 km/h  D) 95 km/h
+   Correct Answer: C) 90 km/h
+
+2. The average of 20 numbers is 30. If two numbers 25 and 35 are removed, what is the new average?
+   Options: A) 28  B) 29  C) 30  D) 31
+   Correct Answer: C) 30
+
+3. A man buys a cycle for ₹1400 and sells it at a loss of 15%. What is the selling price?
+   Options: A) ₹1190  B) ₹1210  C) ₹1230  D) ₹1250
+   Correct Answer: A) ₹1190
+
+4. If 5 men can complete a work in 12 days, how many days will 6 men take to complete the same work?
+   Options: A) 8 days  B) 9 days  C) 10 days  D) 11 days
+   Correct Answer: C) 10 days
+
+5. A shopkeeper marks his goods 20% above cost price and gives a discount of 10%. Find his profit percent.
+   Options: A) 8%  B) 9%  C) 10%  D) 12%
+   Correct Answer: A) 8%
+
+===========================================
+SAMPLE CODING PROBLEM (for Coding Arena)
+===========================================
+
+Title: Two Sum
+Difficulty: Easy
+Description: Given an array of integers nums and an integer target, return indices of the two numbers that add up to target.
+Example: nums = [2,7,11,15], target = 9 → Output: [0,1]
+Tags: Array, Hash Map
+
+Title: Longest Substring Without Repeating Characters
+Difficulty: Medium
+Description: Given a string s, find the length of the longest substring without repeating characters.
+Example: s = "abcabcbb" → Output: 3 ("abc")
+Tags: Sliding Window
+
+Title: Trapping Rain Water
+Difficulty: Hard
+Description: Given n non-negative integers representing an elevation map, compute how much water it can trap after raining.
+Example: height = [0,1,0,2,1,0,1,3,2,1,2,1] → Output: 6
+Tags: Two Pointers, Stack

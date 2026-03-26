@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLP — Career Launch Pad · AI v2.0</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-container">
+    <div class="login-logo">
+      <div class="login-logo-mark">🚀</div>
+      <div class="login-brand">Career <span>Launch</span> Pad</div>
+      <div class="login-tagline">Your AI-powered path to top-tier placements</div>
+    </div>
+
+    <div class="login-card">
+      <div class="login-tab-group">
+        <div class="login-tab active" data-tab="login" onclick="switchLoginTab('login')">Sign In</div>
+        <div class="login-tab" data-tab="register" onclick="switchLoginTab('register')">Create Account</div>
+      </div>
+
+      <div class="login-form">
+        <div class="login-field" id="login-name-field" style="display:none">
+          <label>Your Name</label>
+          <input type="text" id="login-name" placeholder="e.g. Arjun Sharma">
+        </div>
+        <div class="login-field">
+          <label>Username</label>
+          <input type="text" id="login-username" placeholder="e.g. arjun_s" autocomplete="username">
+        </div>
+        <div class="login-field">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <div id="login-error" class="login-error"></div>
+        <button class="login-btn" onclick="handleLogin()">
+          <span id="login-btn-text">Sign In →</span>
+        </button>
+      </div>
+
+      <div class="login-footer">
+        🔒 Data stored locally · No servers · Your privacy is safe
+      </div>
+    </div>
+
+    <div class="login-social-proof">
+      <div class="proof-avatars">
+        <div class="proof-avatar">A</div>
+        <div class="proof-avatar" style="background:linear-gradient(135deg,#16A34A,#2563EB)">K</div>
+        <div class="proof-avatar" style="background:linear-gradient(135deg,#7C3AED,#E8391C)">P</div>
+        <div class="proof-avatar" style="background:linear-gradient(135deg,#D97706,#16A34A)">S</div>
+      </div>
+      <span>342 students placed · ₹1.2 Cr+ total packages</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MAIN APP
+══════════════════════════════════════════════ -->
+<div id="app">
+
+<!-- ── SIDEBAR ──────────────────────────────── -->
+<aside id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-badge">
+      <div class="logo-icon">🚀</div>
+      <div>
+        <div class="logo-text">Career Launch Pad</div>
+        <div class="logo-sub">CLP · AI v2.0</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-streak">
+    <div class="streak-fire">🔥</div>
+    <div>
+      <div class="streak-count" id="streak-display">12</div>
+      <div class="streak-label">day streak</div>
+    </div>
+    <div style="margin-left:auto;text-align:right">
+      <div class="text-xs mono streak-countdown" style="color:var(--red)">--:--:--</div>
+      <div class="text-xs" style="color:var(--text3)">until decay</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Overview</div>
+    <a class="nav-item" data-nav="dashboard" onclick="navigate('dashboard')">
+      <span class="nav-icon">⚡</span> Dashboard
+      <span class="nav-badge amber">!</span>
+    </a>
+    <a class="nav-item" data-nav="profile" onclick="navigate('profile')">
+      <span class="nav-icon">👤</span> Profile
+    </a>
+
+    <div class="nav-section-label">Practice</div>
+    <a class="nav-item" data-nav="coding" onclick="navigate('coding')">
+      <span class="nav-icon">💻</span> Coding Arena
+      <span class="nav-badge red">3</span>
+    </a>
+    <a class="nav-item" data-nav="aptitude" onclick="navigate('aptitude')">
+      <span class="nav-icon">🧮</span> Aptitude Lab
+    </a>
+    <a class="nav-item" data-nav="hr" onclick="navigate('hr')">
+      <span class="nav-icon">🎙️</span> HR Mirror
+    </a>
+
+    <div class="nav-section-label">AI Tools</div>
+    <a class="nav-item" data-nav="interview" onclick="navigate('interview')">
+      <span class="nav-icon">🎥</span> Interview Sim
+      <span class="nav-badge blue">NEW</span>
+    </a>
+    <a class="nav-item" data-nav="resume" onclick="navigate('resume')">
+      <span class="nav-icon">📄</span> Resume ATS
+    </a>
+    <a class="nav-item" data-nav="ai" onclick="navigate('ai')">
+      <span class="nav-icon">🤖</span> AI Coach
+    </a>
+
+    <div class="nav-section-label">Motivation</div>
+    <a class="nav-item" data-nav="impact" onclick="navigate('impact')">
+      <span class="nav-icon">🏆</span> Impact Records
+    </a>
+    <a class="nav-item" data-nav="goals" onclick="navigate('goals')">
+      <span class="nav-icon">📜</span> Goal Contracts
+    </a>
+    <a class="nav-item" data-nav="mindgames" onclick="navigate('mindgames')">
+      <span class="nav-icon">🧠</span> Mind Games
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="avatar" id="sidebar-avatar">A</div>
+    <div style="flex:1;min-width:0">
+      <div class="footer-name truncate" id="sidebar-user-name">Loading...</div>
+      <div class="footer-rank" id="sidebar-user-rank">—</div>
+    </div>
+    <div class="sidebar-theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle theme">🌙</div>
+  </div>
+</aside>
+
+<!-- ── MAIN ──────────────────────────────────── -->
+<div id="main">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <span id="topbar-title" style="font-family:var(--font-display);font-size:15px;font-weight:900">Dashboard</span>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-alert" id="topbar-streak-alert">⚠️ STREAK AT RISK</div>
+    <div class="topbar-btn" onclick="toggleTheme()" title="Toggle theme">🌙</div>
+    <div class="topbar-btn" onclick="openSettings()" title="Settings">⚙️</div>
+    <div class="topbar-user" onclick="handleLogout()" title="Click to logout">
+      <div class="avatar" style="width:24px;height:24px;font-size:10px" id="topbar-avatar">A</div>
+      <span id="topbar-username" style="font-size:12px">User</span>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: DASHBOARD
+  ══════════════════════════════════════════ -->
+  <section id="page-dashboard" class="page">
+    <div class="page-header">
+      <div class="page-title" id="dashboard-greeting">Good evening 👋</div>
+      <div class="page-subtitle">You're ranked <strong style="color:var(--amber)">#47</strong> — 6 spots from your weekly goal. Every hour counts.</div>
+    </div>
+
+    <!-- Psychology: Loss aversion -->
+    <div class="urgency-banner mb-16" style="margin-bottom:16px">
+      <span style="font-size:18px">🚨</span>
+      <div style="flex:1">
+        <strong>Placement Readiness: 62%</strong> — Bottom 38% this week.
+        68% of students below 70% readiness by now <em>did not</em> get placed at top-tier companies.
+      </div>
+      <div class="mono text-xs" style="color:var(--red);text-align:right">
+        <div>Streak resets in</div>
+        <div class="streak-countdown" style="font-size:14px;font-weight:700">--:--:--</div>
+      </div>
+    </div>
+
+    <!-- STAT GRID -->
+    <div class="grid-4">
+      <div class="stat-card red">
+        <div class="stat-label">Readiness Score</div>
+        <div class="stat-num" style="color:var(--red)"><span data-count="62">0</span>%</div>
+        <div class="stat-sub">↓ 3pts from yesterday</div>
+      </div>
+      <div class="stat-card amber">
+        <div class="stat-label">Problems Solved</div>
+        <div class="stat-num" style="color:var(--amber)"><span data-count="145">0</span></div>
+        <div class="stat-sub">155 behind top peers</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Mock Score</div>
+        <div class="stat-num" style="color:var(--green)"><span data-count="71">0</span>%</div>
+        <div class="stat-sub">↑ 5pts this week</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-label">Current Streak</div>
+        <div class="stat-num" style="color:var(--blue)"><span data-count="12">0</span>🔥</div>
+        <div class="stat-sub">Expires in <span class="streak-countdown-2">--:--</span></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:16px">
+      <!-- Activity chart -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Weekly Activity</span>
+          <span class="badge amber">+14% vs last week</span>
+        </div>
+        <canvas id="activity-chart" style="width:100%"></canvas>
+        <div class="grid-3 mt-12" style="gap:8px;margin-top:12px">
+          <div style="text-align:center">
+            <div class="mono" style="font-size:22px;font-weight:700;color:var(--red)">14</div>
+            <div class="text-xs text-muted">this week</div>
+          </div>
+          <div style="text-align:center">
+            <div class="mono" style="font-size:22px;font-weight:700;color:var(--amber)">3</div>
+            <div class="text-xs text-muted">mock tests</div>
+          </div>
+          <div style="text-align:center">
+            <div class="mono" style="font-size:22px;font-weight:700;color:var(--green)">2</div>
+            <div class="text-xs text-muted">HR sessions</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peer comparison — Psychology: Social proof + fear -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Peer Comparison</span>
+          <span class="badge red">Bottom 38%</span>
+        </div>
+        <div style="margin-bottom:12px;padding:12px;background:var(--bg3);border-radius:var(--radius)">
+          <div style="font-size:13px;color:var(--text2);margin-bottom:8px">You've solved <strong style="color:var(--amber)">145 problems</strong> — but <strong style="color:var(--red)">62% of peers are ahead.</strong></div>
+          <div class="progress-wrap">
+            <div class="progress-info"><span>Your position</span><span style="color:var(--red)">Bottom 38%</span></div>
+            <div class="progress-track" style="height:10px"><div class="progress-fill amber" style="width:62%"></div></div>
+          </div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-info"><span style="font-size:12px">LeetCode Problems</span><span class="mono text-xs" style="color:var(--amber)">145 <span class="text-dim">/ avg 300</span></span></div>
+          <div class="progress-track"><div class="progress-fill danger" style="width:48%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-info"><span style="font-size:12px">Mock Interview Score</span><span class="mono text-xs" style="color:var(--green)">71% <span class="text-dim">/ avg 85%</span></span></div>
+          <div class="progress-track"><div class="progress-fill amber" style="width:84%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-info"><span style="font-size:12px">Aptitude Score</span><span class="mono text-xs" style="color:var(--blue)">68% <span class="text-dim">/ avg 80%</span></span></div>
+          <div class="progress-track"><div class="progress-fill blue" style="width:85%"></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-info"><span style="font-size:12px">Profile Completeness</span><span class="mono text-xs" style="color:var(--red)">55% <span class="text-dim">/ avg 90%</span></span></div>
+          <div class="progress-track"><div class="progress-fill danger" style="width:61%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:16px">
+      <!-- Today's urgent — Commitment + loss aversion -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">⚡ Today's Urgent</span>
+          <span class="badge red">3 at risk</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="alert-box danger"><span class="alert-icon">💀</span><div><strong>Streak dies in 4h 23m</strong> — Solve 1 problem now to reset.</div></div>
+          <div class="alert-box warning"><span class="alert-icon">🏅</span><div><strong>"Perfect Week" badge</strong> expires at midnight. 2 problems needed.</div></div>
+          <div class="alert-box warning"><span class="alert-icon">📉</span><div><strong>Aptitude decaying</strong> — Last activity 3 days ago. Take a quick quiz.</div></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:16px">
+          <button class="btn btn-primary" style="flex:1" onclick="navigate('coding')">💻 Solve Now</button>
+          <button class="btn btn-ghost" style="flex:1" onclick="navigate('aptitude')">🧮 Quick Quiz</button>
+        </div>
+      </div>
+
+      <!-- Live feed — Social proof -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">🔴 Live Activity</span>
+          <span class="badge green">● LIVE</span>
+        </div>
+        <div id="live-feed"></div>
+        <div class="alert-box danger" style="margin-top:12px">
+          <span class="alert-icon">👁️</span>
+          <div>You're the <strong>only one</strong> in your cohort not active in the last 2 hours.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mentor note — Authority principle -->
+    <div class="card" style="margin-top:16px;background:linear-gradient(135deg,var(--surface),var(--bg3));border-color:var(--amber)">
+      <div class="flex items-center gap-12">
+        <div class="avatar" style="background:linear-gradient(135deg,var(--amber),var(--red));width:44px;height:44px;font-size:18px">🧑‍💼</div>
+        <div>
+          <div class="mono text-xs" style="color:var(--amber);letter-spacing:1px;margin-bottom:4px">MENTOR'S NOTE</div>
+          <div style="font-size:13px;line-height:1.6;color:var(--text2)">
+            "Top performers practice aptitude <em>daily</em> — are you slacking? Your peer group average shot up 12% this week. You're falling further behind every hour you don't practice."
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: CODING
+  ══════════════════════════════════════════ -->
+  <section id="page-coding" class="page">
+    <div class="page-header">
+      <div class="page-title">💻 Coding Arena</div>
+      <div class="page-subtitle">Rank #47 — Solve 22 more to enter Top 25. <strong style="color:var(--red)">Score decays after 3 days idle.</strong></div>
+    </div>
+
+    <div class="grid-2" style="gap:16px">
+      <div class="card glow-red">
+        <div class="card-header">
+          <span class="card-title">🔥 Problem of the Day</span>
+          <div class="timer-badge" id="potd-timer">23:44</div>
+        </div>
+        <div style="padding:16px;background:var(--bg3);border-radius:var(--radius)">
+          <div class="flex items-center gap-8 mb-16">
+            <span class="prob-diff hard">HARD</span>
+            <span class="text-sm text-muted">#42 — Trapping Rain Water</span>
+          </div>
+          <p style="font-size:13px;line-height:1.6;color:var(--text2)">Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.</p>
+        </div>
+        <div class="alert-box danger" style="margin-top:12px">
+          <span class="alert-icon">⏰</span>
+          <div>Miss this → lose <strong>"Perfect Week"</strong> badge. 847 users solved today. You haven't.</div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn btn-primary" style="flex:1" onclick="openProblemModal(3)">▶ Solve Now</button>
+          <button class="btn btn-ghost" onclick="getHint(3)">💡 Hint</button>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="grid-2" style="gap:12px">
+          <div class="stat-card amber">
+            <div class="stat-label">Problems Solved</div>
+            <div class="stat-num" style="color:var(--amber)">145</div>
+            <div class="stat-sub">Top peers avg: 300</div>
+          </div>
+          <div class="stat-card red">
+            <div class="stat-label">Score Decay</div>
+            <div class="stat-num" style="color:var(--red)">3d</div>
+            <div class="stat-sub">until -15pts</div>
+          </div>
+        </div>
+        <div class="card" style="flex:1">
+          <div class="card-header">
+            <span class="card-title">🏆 Leaderboard</span>
+            <span class="badge amber">Top 50</span>
+          </div>
+          <div id="coding-lb"></div>
+          <div class="alert-box warning mt-12" style="margin-top:12px">
+            <span class="alert-icon">📊</span>
+            <div>Solve <strong>23 more problems</strong> to overtake P***a R.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Problem Bank</div>
+    <div class="tabs">
+      <div class="tab active" data-filter="all" onclick="filterProblems('all')">All</div>
+      <div class="tab" data-filter="easy" onclick="filterProblems('easy')">Easy</div>
+      <div class="tab" data-filter="medium" onclick="filterProblems('medium')">Medium</div>
+      <div class="tab" data-filter="hard" onclick="filterProblems('hard')">Hard</div>
+      <div class="tab" data-filter="unsolved" onclick="filterProblems('unsolved')">Unsolved</div>
+    </div>
+    <div class="card"><div id="problem-list"></div></div>
+
+    <div class="section-title">⚔️ Battle Mode</div>
+    <div class="card" style="background:linear-gradient(135deg,var(--red-dim),var(--surface));border-color:var(--red)">
+      <div class="flex items-center gap-16">
+        <div style="flex:1">
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:800;margin-bottom:6px">Challenge a Peer</div>
+          <div class="text-sm text-muted">Loser gets a public "DEFEATED" notification. Winner gets +50 score.</div>
+        </div>
+        <button class="btn btn-primary" onclick="findOpponent()">⚔️ Find Opponent</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: APTITUDE
+  ══════════════════════════════════════════ -->
+  <section id="page-aptitude" class="page">
+    <div class="page-header">
+      <div class="page-title">🧮 Aptitude Lab</div>
+      <div class="page-subtitle">Placement Readiness: <strong style="color:var(--red)">62%</strong> — 80% of placed candidates scored 80%+</div>
+    </div>
+
+    <div class="alert-box danger mb-16" style="margin-bottom:16px">
+      <span class="alert-icon">📊</span>
+      <div><strong>15 people solving "Percentages & Ratios" right now.</strong> Your weakest topic: Time & Work — 80% of successful candidates mastered it.</div>
+    </div>
+
+    <div class="grid-2" style="gap:16px">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">🧪 Mock Test</span>
+          <div class="timer-badge">12:00</div>
+        </div>
+        <div id="apt-question-area"></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">📊 Topic Weakness</span></div>
+          <div class="progress-wrap">
+            <div class="progress-info"><span style="font-size:12px">Time &amp; Work</span><span class="mono text-xs">38%</span></div>
+            <div class="progress-track"><div class="progress-fill danger" style="width:38%"></div></div>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-info"><span style="font-size:12px">Percentages</span><span class="mono text-xs">55%</span></div>
+            <div class="progress-track"><div class="progress-fill amber" style="width:55%"></div></div>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-info"><span style="font-size:12px">Probability</span><span class="mono text-xs">48%</span></div>
+            <div class="progress-track"><div class="progress-fill amber" style="width:48%"></div></div>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-info"><span style="font-size:12px">Data Interpretation</span><span class="mono text-xs">72%</span></div>
+            <div class="progress-track"><div class="progress-fill green" style="width:72%"></div></div>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-info"><span style="font-size:12px">Number Systems</span><span class="mono text-xs">81%</span></div>
+            <div class="progress-track"><div class="progress-fill green" style="width:81%"></div></div>
+          </div>
+          <div class="alert-box danger mt-12" style="margin-top:12px">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Time &amp; Work</strong> is your weakest. Top companies test this heavily.</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">👥 Trending Now</span></div>
+          <div class="feed-item"><div class="feed-dot" style="background:var(--red)"></div><span style="font-size:12px">Permutations &amp; Combinations</span><span class="feed-time">15 solving</span></div>
+          <div class="feed-item"><div class="feed-dot" style="background:var(--amber)"></div><span style="font-size:12px">Time, Speed &amp; Distance</span><span class="feed-time">12 solving</span></div>
+          <div class="feed-item"><div class="feed-dot" style="background:var(--blue)"></div><span style="font-size:12px">Profit &amp; Loss</span><span class="feed-time">8 solving</span></div>
+          <div class="feed-item"><div class="feed-dot" style="background:var(--green)"></div><span style="font-size:12px">Syllogisms</span><span class="feed-time">6 solving</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: HR MIRROR
+  ══════════════════════════════════════════ -->
+  <section id="page-hr" class="page">
+    <div class="page-header">
+      <div class="page-title">🎙️ HR Mirror</div>
+      <div class="page-subtitle">Your HR score: <strong style="color:var(--amber)">68%</strong> — 42nd percentile. Powered by Ollama AI.</div>
+    </div>
+
+    <!-- Ollama status -->
+    <div class="ai-status-bar mb-16" style="margin-bottom:16px">
+      <div class="ai-dot loading"></div>
+      <span class="ai-status-text">Connecting to Ollama...</span>
+      <span class="ai-status-model">llama3.2:3b</span>
+    </div>
+
+    <div class="grid-2" style="gap:16px">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">💬 Interview Practice</span>
+          <span class="badge amber" id="hr-q-badge">Q1 / 6</span>
+        </div>
+        <div style="padding:16px;background:var(--bg3);border-radius:var(--radius);margin-bottom:16px">
+          <div class="mono text-xs text-muted" style="margin-bottom:8px">QUESTION</div>
+          <div id="hr-question" style="font-size:15px;font-weight:600;line-height:1.5"></div>
+        </div>
+        <div class="input-label">Your Answer</div>
+        <textarea id="hr-answer" placeholder="Type your answer (use STAR: Situation, Task, Action, Result)..." style="min-height:120px;margin-bottom:12px"></textarea>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-primary" style="flex:1" onclick="analyzeHRAnswer()">🤖 Analyze with AI</button>
+          <button class="btn btn-ghost" onclick="nextHRQ()">Next →</button>
+        </div>
+        <div id="hr-result" style="display:none;margin-top:12px"></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">📊 HR Score Breakdown</span></div>
+          <div class="grid-2" style="gap:10px">
+            <div>
+              <div class="flex items-center justify-between" style="margin-bottom:4px"><span class="text-xs text-muted">Communication</span><span class="mono text-xs" style="color:var(--amber)">72%</span></div>
+              <div class="progress-track"><div class="progress-fill amber" style="width:72%"></div></div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between" style="margin-bottom:4px"><span class="text-xs text-muted">Confidence</span><span class="mono text-xs" style="color:var(--red)">58%</span></div>
+              <div class="progress-track"><div class="progress-fill danger" style="width:58%"></div></div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between" style="margin-bottom:4px"><span class="text-xs text-muted">STAR Structure</span><span class="mono text-xs" style="color:var(--amber)">65%</span></div>
+              <div class="progress-track"><div class="progress-fill amber" style="width:65%"></div></div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between" style="margin-bottom:4px"><span class="text-xs text-muted">Keyword Match</span><span class="mono text-xs" style="color:var(--blue)">70%</span></div>
+              <div class="progress-track"><div class="progress-fill blue" style="width:70%"></div></div>
+            </div>
+          </div>
+          <div class="alert-box danger mt-12" style="margin-top:12px">
+            <span class="alert-icon">⚠️</span>
+            <div><strong>Confidence critically low.</strong> 78% of rejected candidates scored below 65% here.</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">🏆 Success Stories</span></div>
+          <div class="card" style="margin-bottom:10px;padding:14px">
+            <div class="flex items-center gap-10">
+              <div class="avatar" style="width:34px;height:34px">R</div>
+              <div><div style="font-size:13px;font-weight:600">Riya K. → Google SWE</div><div class="text-xs" style="color:var(--amber)">₹45 LPA</div></div>
+            </div>
+            <div class="text-sm text-muted mt-8" style="margin-top:8px">"Practiced 200+ HR answers over 3 months."</div>
+          </div>
+          <div class="card" style="padding:14px">
+            <div class="flex items-center gap-10">
+              <div class="avatar" style="width:34px;height:34px;background:linear-gradient(135deg,var(--green),var(--blue))">A</div>
+              <div><div style="font-size:13px;font-weight:600">Arun M. → Amazon</div><div class="text-xs" style="color:var(--amber)">₹32 LPA</div></div>
+            </div>
+            <div class="text-sm text-muted mt-8" style="margin-top:8px">"Used STAR consistently. HR score: 91%"</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: GOALS
+  ══════════════════════════════════════════ -->
+  <section id="page-goals" class="page">
+    <div class="page-header">
+      <div class="page-title">📜 Goal Contracts</div>
+      <div class="page-subtitle">90% of users who set goals here and broke them — did not get placed. Sign carefully.</div>
+    </div>
+    <div class="grid-2" style="gap:16px">
+      <div class="card glow-red" style="border-color:var(--red)">
+        <div class="card-header">
+          <span class="card-title">✍️ Sign a New Contract</span>
+          <span class="badge red">BINDING</span>
+        </div>
+        <div class="alert-box danger mb-16" style="margin-bottom:16px">
+          <span class="alert-icon">⚠️</span>
+          <div><strong>90% of users who set this goal give up within 2 weeks.</strong> Are you in the 10%?</div>
+        </div>
+        <div class="input-label">Your Goal (be specific)</div>
+        <input type="text" id="goal-input" placeholder="e.g. Solve 50 problems in 2 weeks" style="margin-bottom:12px">
+        <div class="input-label">Accountability Email</div>
+        <input type="email" placeholder="friend@email.com" style="margin-bottom:12px">
+        <div class="input-label">Target Date</div>
+        <input type="date" style="margin-bottom:16px">
+        <button class="btn btn-primary" style="width:100%" onclick="signGoalContract()">🖊️ Sign &amp; Commit (No Going Back)</button>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">📋 Active Contracts</span></div>
+          <div id="active-goals-list">
+            <p class="text-dim text-sm" style="padding:12px">Loading contracts...</p>
+          </div>
+        </div>
+        <div class="alert-box danger">
+          <span class="alert-icon">🔥</span>
+          <div><strong>Penalty Box:</strong> Failing 2+ contracts restricts Battle Mode access and removes streak badge for 7 days.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: PROFILE
+  ══════════════════════════════════════════ -->
+  <section id="page-profile" class="page">
+    <div class="page-header">
+      <div class="page-title">👤 Profile</div>
+      <div class="page-subtitle">Reputation Score: <strong style="color:var(--amber)">647 / 1000</strong> — Below recruiter average.</div>
+    </div>
+    <div class="grid-2" style="gap:16px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
+            <div class="avatar" style="width:56px;height:56px;font-size:20px" id="profile-avatar-big">A</div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:20px;font-weight:900" id="profile-name">Loading...</div>
+              <div class="text-sm text-muted">B.Tech CSE · 2025</div>
+              <div style="display:flex;gap:6px;margin-top:6px">
+                <span class="badge amber">Rank #47</span>
+                <span class="badge blue">62% Ready</span>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="background:var(--bg3);padding:14px">
+            <div class="mono text-xs text-muted" style="margin-bottom:8px">AI RECRUITER VIEW</div>
+            <div style="font-size:13px;line-height:1.7;color:var(--text2)">
+              <em>"Candidate shows moderate technical skills with 145 solved problems — below the 280+ average for shortlisted candidates. Profile completeness is low (55%). <strong style="color:var(--red)">Not currently competitive for MAANG roles.</strong>"</em>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">🔗 Integrations</span></div>
+          <div class="flex items-center gap-12" style="padding:10px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:20px">💼</span>
+            <div style="flex:1"><div style="font-size:13px;font-weight:600">LinkedIn</div><div class="text-xs text-muted">Profile 67% complete</div></div>
+            <span class="badge green">connected</span>
+          </div>
+          <div class="flex items-center gap-12" style="padding:10px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:20px">🐙</span>
+            <div style="flex:1"><div style="font-size:13px;font-weight:600">GitHub</div><div class="text-xs text-muted">No activity in 14 days</div></div>
+            <span class="badge amber">warning</span>
+          </div>
+          <div class="flex items-center gap-12" style="padding:10px 0">
+            <span style="font-size:20px">⚡</span>
+            <div style="flex:1"><div style="font-size:13px;font-weight:600">LeetCode</div><div class="text-xs text-muted">145 problems solved</div></div>
+            <span class="badge green">connected</span>
+          </div>
+          <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:12px">+ Connect More</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">📊 Reputation Score</span></div>
+          <div style="text-align:center;padding:16px 0">
+            <div style="font-family:var(--font-display);font-size:52px;font-weight:900;color:var(--amber)">647</div>
+            <div class="text-sm text-muted">out of 1000</div>
+            <div class="badge amber" style="margin-top:8px">Top Tier requires 800+</div>
+          </div>
+          <div class="progress-wrap"><div class="progress-info"><span class="text-xs">LeetCode</span><span class="mono text-xs" style="color:var(--amber)">145</span></div><div class="progress-track"><div class="progress-fill amber" style="width:48%"></div></div></div>
+          <div class="progress-wrap"><div class="progress-info"><span class="text-xs">GitHub Activity</span><span class="mono text-xs" style="color:var(--red)">30</span></div><div class="progress-track"><div class="progress-fill danger" style="width:30%"></div></div></div>
+          <div class="progress-wrap"><div class="progress-info"><span class="text-xs">Mock Scores</span><span class="mono text-xs" style="color:var(--green)">71</span></div><div class="progress-track"><div class="progress-fill green" style="width:71%"></div></div></div>
+          <div class="progress-wrap"><div class="progress-info"><span class="text-xs">HR Skills</span><span class="mono text-xs" style="color:var(--blue)">68</span></div><div class="progress-track"><div class="progress-fill blue" style="width:68%"></div></div></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">🚀 Profile Boost Tasks</span></div>
+          <div class="text-sm text-muted" style="margin-bottom:12px">Complete to unlock <strong style="color:var(--amber)">Recruiter Visibility</strong></div>
+          <div class="flex items-center gap-10" style="padding:8px 0;border-bottom:1px solid var(--border)">
+            <div style="width:18px;height:18px;border-radius:4px;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0"></div>
+            <span class="text-sm">Add 2 projects to GitHub</span>
+          </div>
+          <div class="flex items-center gap-10" style="padding:8px 0;border-bottom:1px solid var(--border)">
+            <div style="width:18px;height:18px;border-radius:4px;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0"></div>
+            <span class="text-sm">Certify in Data Structures</span>
+          </div>
+          <div class="flex items-center gap-10" style="padding:8px 0;border-bottom:1px solid var(--border)">
+            <div style="width:18px;height:18px;border-radius:4px;border:2px solid var(--green);background:var(--green-dim);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;color:var(--green)">✓</div>
+            <span class="text-sm text-muted" style="text-decoration:line-through">Complete LinkedIn summary</span>
+          </div>
+          <div class="flex items-center gap-10" style="padding:8px 0">
+            <div style="width:18px;height:18px;border-radius:4px;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0"></div>
+            <span class="text-sm">Upload resume for ATS check</span>
+          </div>
+          <div class="progress-wrap mt-12" style="margin-top:12px">
+            <div class="progress-info"><span class="text-sm">Boost Meter</span><span class="mono text-xs text-muted">1/4</span></div>
+            <div class="progress-track" style="height:8px"><div class="progress-fill amber" style="width:25%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: AI COACH
+  ══════════════════════════════════════════ -->
+  <section id="page-ai" class="page">
+    <div class="page-header">
+      <div class="page-title">🤖 AI Coach</div>
+      <div class="page-subtitle">Powered by Ollama (llama3.2:3b) — Your personal high-stakes mentor.</div>
+    </div>
+
+    <div class="ai-status-bar mb-16" style="margin-bottom:16px">
+      <div class="ai-dot loading"></div>
+      <span class="ai-status-text">Connecting to Ollama...</span>
+      <span class="ai-status-model">llama3.2:3b</span>
+    </div>
+
+    <div class="grid-2" style="gap:16px">
+      <div class="card" style="display:flex;flex-direction:column">
+        <div class="card-header">
+          <span class="card-title">💬 CLP.AI Mentor</span>
+          <span class="badge red">● LIVE</span>
+        </div>
+        <div class="alert-box danger mb-16" style="margin-bottom:12px">
+          <span class="alert-icon">🤖</span>
+          <div>This AI knows your stats. It will push you. It will not be gentle.</div>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <input type="text" id="chat-input" placeholder="Ask your AI coach..." style="flex:1"
+            onkeydown="if(event.key==='Enter') sendChatMessage()">
+          <button class="btn btn-primary" onclick="sendChatMessage()">→</button>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card">
+          <div class="card-header"><span class="card-title">🎯 Today's Optimized Plan</span></div>
+          <div class="flex items-center gap-10" style="padding:10px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:16px">💻</span>
+            <div style="flex:1"><div style="font-size:13px;font-weight:500">Solve 3 LeetCode Medium</div><div class="text-xs text-muted">90 min</div></div>
+            <span class="badge red">HIGH</span>
+          </div>
+          <div class="flex items-center gap-10" style="padding:10px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:16px">🧮</span>
+            <div style="flex:1"><div style="font-size:13px;font-weight:500">Aptitude: Time &amp; Work (30 Qs)</div><div class="text-xs text-muted">45 min</div></div>
+            <span class="badge red">HIGH</span>
+          </div>
+          <div class="flex items-center gap-10" style="padding:10px 0;border-bottom:1px solid var(--border)">
+            <span style="font-size:16px">🎙️</span>
+            <div style="flex:1"><div style="font-size:13px;font-weight:500">Practice 2 HR answers (STAR)</div><div class="text-xs text-muted">30 min</div></div>
+            <span class="badge amber">MED</span>
+          </div>
+          <div class="flex items-center gap-10" style="padding:10px 0">
+            <span style="font-size:16px">📄</span>
+            <div style="flex:1"><div style="font-size:13px;font-weight:500">Update GitHub with new project</div><div class="text-xs text-muted">60 min</div></div>
+            <span class="badge amber">MED</span>
+          </div>
+        </div>
+
+        <div class="card" style="background:linear-gradient(135deg,var(--red-dim),var(--surface));border-color:var(--red)">
+          <div class="card-header"><span class="card-title">🔮 Future Self</span></div>
+          <div class="grid-2" style="gap:10px">
+            <div style="padding:12px;background:var(--green-dim);border:1.5px solid var(--green);border-radius:var(--radius)">
+              <div class="mono text-xs" style="color:var(--green);margin-bottom:6px">IF YOU PUSH HARD</div>
+              <div style="font-size:14px;font-weight:700">₹38 LPA offer</div>
+              <div class="text-xs text-muted">in ~90 days</div>
+            </div>
+            <div style="padding:12px;background:var(--red-dim);border:1.5px solid var(--red);border-radius:var(--radius)">
+              <div class="mono text-xs" style="color:var(--red);margin-bottom:6px">IF YOU SLACK</div>
+              <div style="font-size:14px;font-weight:700">₹8 LPA offer</div>
+              <div class="text-xs text-muted">or no offer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: INTERVIEW SIMULATION
+  ══════════════════════════════════════════ -->
+  <section id="page-interview" class="page">
+    <div class="page-header">
+      <div class="page-title">🎥 Interview Simulation</div>
+      <div class="page-subtitle">Full-cycle simulation with real-time eye tracking. Any distraction is flagged.</div>
+    </div>
+
+    <div class="grid-2" style="gap:16px">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">📷 Eye Tracking</span>
+          <div class="eye-status">
+            <div class="eye-dot focused" id="eye-dot"></div>
+            <span class="mono" id="eye-label" style="font-size:11px">READY</span>
+          </div>
+        </div>
+        <div style="position:relative;background:var(--bg2);border-radius:var(--radius);aspect-ratio:4/3;overflow:hidden;display:flex;align-items:center;justify-content:center">
+          <video id="webcam-feed" autoplay muted playsinline style="width:100%;height:100%;object-fit:cover;display:none"></video>
+          <div id="webcam-placeholder" style="text-align:center;color:var(--text3)">
+            <div style="font-size:48px;margin-bottom:12px">📷</div>
+            <div class="text-sm">Camera not started</div>
+          </div>
+        </div>
+        <div class="grid-2 mt-12" style="gap:10px;margin-top:12px">
+          <div class="stat-card green">
+            <div class="stat-label">Attention Score</div>
+            <div class="stat-num" style="font-size:20px;color:var(--green)" id="attention-val">87%</div>
+          </div>
+          <div class="stat-card red">
+            <div class="stat-label">Flags</div>
+            <div class="stat-num" style="font-size:20px;color:var(--red)" id="flags-val">0</div>
+          </div>
+        </div>
+        <div style="margin-top:10px">
+          <div class="stat-label" style="margin-bottom:4px">Attention</div>
+          <div style="background:var(--bg3);border-radius:4px;height:8px;overflow:hidden">
+            <div id="attention-bar" style="height:100%;width:87%;background:var(--green);transition:width 0.4s ease"></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button class="btn btn-primary" style="flex:1" id="start-sim-btn" onclick="startWebcam()">▶ Start Simulation</button>
+          <button class="btn btn-ghost" onclick="stopWebcam()">■ Stop</button>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">🎤 Live Interview</span>
+            <div class="timer-badge mono" id="interview-clock">00:00</div>
+          </div>
+          <div class="tabs" style="margin-bottom:16px">
+            <div class="tab active" onclick="setInterviewTab(this,'aptitude')">MCQ</div>
+            <div class="tab" onclick="setInterviewTab(this,'coding')">Coding</div>
+            <div class="tab" onclick="setInterviewTab(this,'technical')">Technical</div>
+            <div class="tab" onclick="setInterviewTab(this,'hr-sim')">HR</div>
+          </div>
+          <div id="interview-panel"></div>
+        </div>
+        <div class="alert-box danger">
+          <span class="alert-icon">👀</span>
+          <div><strong>Anti-Cheat Active:</strong> Looking away &gt;3 seconds triggers a fraud flag.</div>
+        </div>
+        <button class="btn btn-primary" style="width:100%;margin-top:12px"
+          onclick="endInterviewSession()">
+          ✅ End Session & Save Score
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: RESUME ATS
+  ══════════════════════════════════════════ -->
+  <section id="page-resume" class="page">
+    <div class="page-header">
+      <div class="page-title">📄 Resume ATS Checker</div>
+      <div class="page-subtitle">Powered by Ollama AI — See your resume through the eyes of a recruiter's bot.</div>
+    </div>
+
+    <div class="ai-status-bar mb-16" style="margin-bottom:16px">
+      <div class="ai-dot loading"></div>
+      <span class="ai-status-text">Connecting to Ollama...</span>
+      <span class="ai-status-model">llama3.2:3b</span>
+    </div>
+
+    <div class="grid-2" style="gap:16px">
+      <div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">📤 Paste Resume</span></div>
+          <div class="drop-zone" onclick="document.getElementById('resume-text').focus()"
+            ondragover="this.classList.add('drag');event.preventDefault()"
+            ondragleave="this.classList.remove('drag')"
+            ondrop="event.preventDefault();this.classList.remove('drag')">
+            <div class="drop-icon">📄</div>
+            <div class="drop-text">Drop PDF or paste text below</div>
+            <div class="drop-sub">Supported: plain text paste</div>
+          </div>
+          <div class="input-label" style="margin-top:12px">Paste resume text directly:</div>
+          <textarea id="resume-text" placeholder="Paste your resume here...
+
+Example:
+Arjun Sharma | arjun@email.com | github.com/arjun
+
+EXPERIENCE
+Software Engineer Intern | Tech Corp | May–Aug 2024
+• Built REST APIs reducing response time by 40%
+• Implemented auth system for 10K+ users
+
+EDUCATION
+B.Tech CS | VIT Chennai | 2021-2025 | CGPA: 8.4
+
+SKILLS
+Python, JavaScript, React, Node.js, MongoDB, SQL" style="min-height:200px;font-family:var(--font-mono);font-size:12px"></textarea>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <button class="btn btn-primary" style="flex:1" id="analyze-btn" onclick="analyzeResume()">🔍 Analyze Resume</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('resume-text').value=''">✕ Clear</button>
+          </div>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <div class="card-header"><span class="card-title">💡 ATS Tips</span></div>
+          <div class="flex items-center gap-8" style="padding:7px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--green)">✓</span>Use action verbs: Built, Implemented, Reduced, Led</div>
+          <div class="flex items-center gap-8" style="padding:7px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--green)">✓</span>Quantify: "40% faster" beats "improved performance"</div>
+          <div class="flex items-center gap-8" style="padding:7px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--green)">✓</span>Mirror keywords from job descriptions</div>
+          <div class="flex items-center gap-8" style="padding:7px 0;border-bottom:1px solid var(--border);font-size:12px"><span style="color:var(--green)">✓</span>Avoid tables, columns, images — ATS can't parse them</div>
+          <div class="flex items-center gap-8" style="padding:7px 0;font-size:12px"><span style="color:var(--green)">✓</span>One column, standard fonts only</div>
+        </div>
+      </div>
+      <div>
+        <div id="ats-results" style="display:none"></div>
+        <div id="ats-placeholder" class="card" style="text-align:center;padding:40px 20px">
+          <div style="font-size:48px;margin-bottom:12px">🤖</div>
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:700;margin-bottom:8px">Waiting for your resume</div>
+          <div class="text-sm text-muted">Paste your resume and click Analyze.</div>
+          <div class="alert-box danger" style="margin-top:20px;text-align:left">
+            <span class="alert-icon">⚠️</span>
+            <div>92% of resumes are rejected before a human reads them.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: MIND GAMES
+  ══════════════════════════════════════════ -->
+  <section id="page-mindgames" class="page">
+    <div class="page-header">
+      <div class="page-title">🧠 Mind Games</div>
+      <div class="page-subtitle">Psychological hacks to rewire how you work. Warning: These mess with your head.</div>
+    </div>
+    <div class="grid-2" style="gap:16px">
+      <div class="card" style="border-color:var(--red)">
+        <div class="card-header">
+          <span class="card-title">😈 Do Nothing</span>
+          <span class="badge red">90% GIVE UP</span>
+        </div>
+        <div style="font-size:13px;color:var(--text2);margin-bottom:16px">Click and do <em>absolutely nothing</em> for 5 minutes. No cheating.</div>
+        <button class="btn btn-ghost" style="width:100%;border-color:var(--red);color:var(--red)" onclick="startDoNothing()">Do Nothing for 5 Minutes</button>
+        <div id="do-nothing-area" style="margin-top:16px"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="card-title">🪞 The Mirror</span></div>
+        <div style="font-size:13px;color:var(--text2);margin-bottom:12px">Type your biggest fear about placements. We'll turn it into fuel.</div>
+        <input type="text" id="fear-input" placeholder="e.g. Not getting placed, letting my family down..." style="margin-bottom:10px">
+        <button class="btn btn-amber" style="width:100%" onclick="submitFear()">🔥 Use My Fear</button>
+        <div id="fear-result"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">🎁 Mystery Box</span>
+          <span class="badge amber">LOCKED</span>
+        </div>
+        <div style="font-size:13px;color:var(--text2);margin-bottom:16px">Solve 5 problems today to unlock a secret resource.</div>
+        <div style="text-align:center;padding:20px;background:var(--bg3);border-radius:var(--radius);font-size:36px;cursor:pointer" onclick="toast('🎁 Keep going!','Solve 3 more problems to unlock.','amber')">🎁</div>
+        <div class="progress-wrap mt-12" style="margin-top:12px">
+          <div class="progress-info"><span class="text-xs">Progress</span><span class="mono text-xs">2/5 problems</span></div>
+          <div class="progress-track"><div class="progress-fill amber" style="width:40%"></div></div>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:var(--purple)">
+        <div class="card-header">
+          <span class="card-title">👤 Rival Generator</span>
+          <span class="badge purple">AI-GENERATED</span>
+        </div>
+        <div style="padding:14px;background:var(--bg3);border-radius:var(--radius);margin-bottom:12px">
+          <div style="font-size:13px;font-weight:600">Meet your rival: <strong style="color:var(--purple)">V***k S.</strong></div>
+          <div class="text-xs text-muted mt-8" style="margin-top:4px">B.Tech CSE · Similar college · Same targets</div>
+          <div style="margin-top:8px;display:flex;gap:12px">
+            <div class="text-sm"><span class="mono" style="color:var(--amber)">178</span> problems</div>
+            <div class="text-sm"><span class="mono" style="color:var(--green)">76%</span> readiness</div>
+            <div class="text-sm"><span class="mono" style="color:var(--red)">Rank #39</span></div>
+          </div>
+        </div>
+        <div class="alert-box warning">
+          <span class="alert-icon">📢</span>
+          <div>V***k solved a Hard problem 2 hours ago. He's now 8 spots above you.</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" style="margin-top:10px;width:100%;border-color:var(--purple);color:var(--purple)" onclick="toast('⚔️ Challenge Sent','V***k has been notified!','amber')">⚡ Challenge Rival</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PAGE: IMPACT
+  ══════════════════════════════════════════ -->
+  <section id="page-impact" class="page">
+    <div class="page-header">
+      <div class="page-title">🏆 Impact — Placement Records</div>
+      <div class="page-subtitle">Real people, real offers. Where will your name appear?</div>
+    </div>
+
+    <div class="grid-4 mb-16" id="impact-community-stats" style="margin-bottom:16px"></div>
+
+    <div class="alert-box danger mb-16" style="margin-bottom:16px">
+      <span class="alert-icon">🚀</span>
+      <div><strong>18 users got placed this month.</strong> They started where you are now — but they didn't stay there. Will your name be here next month?</div>
+    </div>
+
+    <div class="flex gap-8 mb-16" style="flex-wrap:wrap;margin-bottom:16px;gap:8px">
+      <div class="company-tag active" onclick="filterImpact('all',this)">All Companies</div>
+      <div class="company-tag" onclick="filterImpact('Google',this)">Google</div>
+      <div class="company-tag" onclick="filterImpact('Microsoft',this)">Microsoft</div>
+      <div class="company-tag" onclick="filterImpact('Amazon',this)">Amazon</div>
+      <div class="company-tag" onclick="filterImpact('Flipkart',this)">Flipkart</div>
+      <div class="company-tag" onclick="filterImpact('Uber',this)">Uber</div>
+    </div>
+
+    <div class="grid-3" id="placement-grid"></div>
+    <div id="compare-box" style="display:none;margin-top:16px"></div>
+
+    <div class="section-title">🎛️ What If Simulator</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Adjust Your Effort</span>
+        <span class="badge amber">PREDICTIVE MODEL</span>
+      </div>
+      <div class="input-label" style="margin-bottom:8px">Extra problems per day (beyond current pace of 3)</div>
+      <input type="range" id="effort-slider" min="0" max="10" value="2" style="margin-bottom:8px">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text3);font-family:var(--font-mono)">
+        <span>+0 (current)</span><span>+5</span><span>+10</span>
+      </div>
+      <div id="slider-prediction"></div>
+    </div>
+  </section>
+
+</div><!-- end #main -->
+</div><!-- end #app -->
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<!-- Coding Problem Modal -->
+<div id="problem-modal" class="problem-modal" style="display:none" onclick="if(event.target===this) closeProblemModal()">
+  <div class="problem-modal-content">
+    <div class="problem-modal-header">
+      <div id="modal-problem-title" class="problem-modal-title">Problem Title</div>
+      <button class="problem-modal-close" onclick="closeProblemModal()">✕</button>
+    </div>
+    <div id="modal-problem-description" class="problem-description"></div>
+    <div class="code-editor-container">
+      <label>Write your solution here:</label>
+      <textarea id="code-editor" class="code-editor" placeholder="// Write your code here..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeProblemModal()">Cancel</button>
+      <button class="btn btn-primary" id="modal-submit-btn" onclick="submitProblemSolution()">Submit Solution</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SETTINGS MODAL
+══════════════════════════════════════════ -->
+<div id="settings-modal" class="settings-modal" style="display:none" onclick="if(event.target===this) closeSettings()">
+  <div class="settings-box" style="position:relative">
+    <div class="settings-close" onclick="closeSettings()">✕</div>
+    <div class="settings-title">⚙️ CLP Settings</div>
+    <div class="text-sm text-muted" style="margin-bottom:24px">Configure AI and preferences</div>
+
+    <div class="input-label">Ollama Server URL</div>
+    <input type="text" id="settings-ollama-url" placeholder="http://localhost:11434" style="margin-bottom:6px">
+    <div class="text-xs text-muted" style="margin-bottom:20px">Make sure Ollama is running: <span class="mono">ollama serve</span> and <span class="mono">ollama pull llama3.2:3b</span></div>
+
+    <div class="input-label">Theme</div>
+    <div style="display:flex;gap:8px;margin-bottom:24px">
+      <button class="btn btn-ghost" style="flex:1" onclick="applyTheme('light')">☀️ Light</button>
+      <button class="btn btn-ghost" style="flex:1" onclick="applyTheme('dark')">🌙 Dark</button>
+    </div>
+
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-primary" style="flex:1" onclick="saveSettings()">Save &amp; Reconnect</button>
+      <button class="btn btn-ghost" onclick="closeSettings()">Cancel</button>
+    </div>
+
+    <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border)">
+      <div class="input-label" style="margin-bottom:12px">Danger Zone</div>
+      <button class="btn btn-ghost" style="width:100%;border-color:var(--red);color:var(--red)" onclick="if(confirm('Log out?')) handleLogout()">🚪 Log Out</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+<script>
+// Sync topbar theme button
+document.addEventListener('DOMContentLoaded', () => {
+  const theme = localStorage.getItem('clp_theme') || 'light';
+  document.querySelectorAll('.topbar-btn').forEach(b => {
+    if (b.title === 'Toggle theme') b.textContent = theme === 'dark' ? '☀️' : '🌙';
+  });
+});
+</script>
+</body>
+</html>

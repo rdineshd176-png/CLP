@@ -1,0 +1,95 @@
+[
+  {
+    "id": 1,
+    "title": "Two Sum",
+    "difficulty": "easy",
+    "tags": [
+      "Array",
+      "Hash Map"
+    ],
+    "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice."
+  },
+  {
+    "id": 2,
+    "title": "Longest Substring Without Repeating",
+    "difficulty": "medium",
+    "tags": [
+      "Sliding Window"
+    ],
+    "description": "Given a string s, find the length of the longest substring without repeating characters."
+  },
+  {
+    "id": 3,
+    "title": "Median of Two Sorted Arrays",
+    "difficulty": "hard",
+    "tags": [
+      "Binary Search"
+    ],
+    "description": "Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log (m+n))."
+  },
+  {
+    "id": 4,
+    "title": "Valid Parentheses",
+    "difficulty": "easy",
+    "tags": [
+      "Stack"
+    ],
+    "description": "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid."
+  },
+  {
+    "id": 5,
+    "title": "Merge K Sorted Lists",
+    "difficulty": "hard",
+    "tags": [
+      "Heap",
+      "Linked List"
+    ],
+    "description": "You are given an array of k linked-lists lists, each linked-list is sorted in ascending order. Merge all the linked-lists into one sorted linked-list and return it."
+  },
+  {
+    "id": 6,
+    "title": "Maximum Subarray",
+    "difficulty": "easy",
+    "tags": [
+      "DP"
+    ],
+    "description": "Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum."
+  },
+  {
+    "id": 7,
+    "title": "Jump Game II",
+    "difficulty": "medium",
+    "tags": [
+      "Greedy"
+    ],
+    "description": "Given an array of non-negative integers nums, you are initially positioned at the first index of the array. Each element in the array represents your maximum jump length at that position. Your goal is to reach the last index in the minimum number of jumps."
+  },
+  {
+    "id": 8,
+    "title": "Word Ladder",
+    "difficulty": "hard",
+    "tags": [
+      "BFS",
+      "Graph"
+    ],
+    "description": "A transformation sequence from word beginWord to word endWord using a dictionary wordList is a sequence of words beginWord -> s1 -> s2 -> ... -> sk such that every adjacent pair of words differs by a single letter. Return the number of words in the shortest transformation sequence."
+  },
+  {
+    "id": 9,
+    "title": "House Robber",
+    "difficulty": "medium",
+    "tags": [
+      "DP"
+    ],
+    "description": "You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected."
+  },
+  {
+    "id": 10,
+    "title": "Coin Change",
+    "difficulty": "medium",
+    "tags": [
+      "DP"
+    ],
+    "description": "You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money. Return the fewest number of coins that you need to make up that amount."
+  }
+]
